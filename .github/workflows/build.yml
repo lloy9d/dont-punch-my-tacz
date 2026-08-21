@@ -42,7 +42,9 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build
-        run: ./gradlew build --stacktrace -Pmod_version=${{ env.MOD_VERSION }}
+        run: |
+          chmod +x gradlew
+          ./gradlew build --stacktrace -Pmod_version=${{ env.MOD_VERSION }}
 
       - name: Put it on the release
         uses: softprops/action-gh-release@v2
