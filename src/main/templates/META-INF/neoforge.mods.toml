@@ -8,6 +8,7 @@ modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
 authors="Don't Punch My TACZ"
+logoFile="icon.png"
 description='''
 Punchy keeps drawing a second TACZ gun. This tells Punchy to leave the guns alone. Same trick as pressing F8, just done for everyone.
 '''
