@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+displayTest="IGNORE_ALL_VERSION"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="Don't Punch My TACZ"
+description='''
+Punchy keeps drawing a second TACZ gun. This tells Punchy to leave the guns alone. Same trick as pressing F8, just done for everyone.
+'''
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.0,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.${mod_id}]]
+    modId="punchy"
+    type="optional"
+    versionRange="[0,)"
+    ordering="BEFORE"
+    side="CLIENT"
+
+[[dependencies.${mod_id}]]
+    modId="tacz"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="CLIENT"
