@@ -1,3 +1,7 @@
+<p>
+  <img src="icon.png" alt="Don't Punch My TACZ" width="128" height="128">
+</p>
+
 # Don't Punch My TACZ
 
 <p>
