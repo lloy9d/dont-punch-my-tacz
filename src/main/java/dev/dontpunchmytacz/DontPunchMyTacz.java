@@ -13,7 +13,6 @@ public final class DontPunchMyTacz {
     static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public DontPunchMyTacz(IEventBus modBus) {
-        // We load before Punchy, so the json is ready when Punchy opens it.
         BlacklistForce.apply();
         modBus.addListener(this::onClientSetup);
     }
