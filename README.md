@@ -28,7 +28,13 @@ You need:
 - Minecraft **1.21.1**
 - **NeoForge**
 - **Punchy**
-- **TACZ**
+
+Nice to have (it only touches these if you actually installed them):
+
+- **TACZ** > guns only, not bullets or workbenches
+- **Create** > potato cannon, extendo grip, worldshaper
+- **Create Simulated** (Aeronautics) > plunger launcher
+- **Power Grid** > portable saw, drill, electrozapper
 
 ## What it does
 
