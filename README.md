@@ -31,7 +31,7 @@ You need:
 
 Nice to have (it only touches these if you actually installed them):
 
-- **TACZ** > guns only, not bullets or workbenches
+- **TACZ** > all guns
 - **Create** > potato cannon, extendo grip, worldshaper
 - **Create Simulated** (Aeronautics) > plunger launcher
 - **Power Grid** > portable saw, drill, electrozapper
