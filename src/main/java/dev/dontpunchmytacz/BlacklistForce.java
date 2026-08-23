@@ -22,17 +22,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Same thing as pressing F8 in Punchy and blacklisting TACZ.
- * Only adds missing ids. Never wipes other Punchy settings.
- */
 final class BlacklistForce {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-    // Regex covers the whole TACZ mod. The rest is the F8 list that already worked.
-    private static final List<String> IDS = List.of(
+    private static final List<String> REMOVE = List.of(
             "tacz:.*",
-            "tacz:modern_kinetic_gun",
             "tacz:ammo",
             "tacz:attachment",
             "tacz:ammo_box",
@@ -42,7 +36,18 @@ final class BlacklistForce {
             "tacz:workbench_c",
             "tacz:target",
             "tacz:target_minecart",
-            "tacz:statue",
+            "tacz:statue"
+    );
+
+    private static final List<String> IDS = List.of(
+            "tacz:modern_kinetic_gun",
+            "powergrid:portable_saw",
+            "powergrid:portable_drill",
+            "powergrid:electrozapper",
+            "create:handheld_worldshaper",
+            "create:extendo_grip",
+            "create:potato_cannon",
+            "simulated:plunger_launcher",
             "tacz:aa12",
             "tacz:ai_awp",
             "tacz:ak47",
@@ -99,100 +104,93 @@ final class BlacklistForce {
             "tacz:vector45"
     );
 
-    private static final String[] FILES = {
-            "punchy/punchy_config.json"
-    };
+    private static final String CONFIG = "punchy/punchy_config.json";
 
     private BlacklistForce() {
     }
 
     static void apply() {
-        int files = patchFiles();
-        int memory = patchLoadedPunchy();
+        int files = patchFile();
+        int memory = patchLoaded();
         if (files > 0 || memory > 0) {
-            DontPunchMyTacz.LOGGER.info("Told Punchy to leave TACZ alone (config {}, memory {}).", files, memory);
+            DontPunchMyTacz.LOGGER.info("Updated Punchy blacklist");
         }
     }
 
-    private static int patchFiles() {
-        Path configDir = FMLPaths.CONFIGDIR.get();
-        int changed = 0;
-        for (String name : FILES) {
-            Path path = configDir.resolve(name);
-            if (Files.isRegularFile(path) && patchFile(path)) {
-                changed++;
-            }
+    private static int patchFile() {
+        Path path = FMLPaths.CONFIGDIR.get().resolve(CONFIG);
+        if (!Files.isRegularFile(path)) {
+            return 0;
         }
-        return changed;
-    }
 
-    private static boolean patchFile(Path path) {
         JsonObject root;
         try (Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
             JsonElement parsed = JsonParser.parseReader(reader);
             if (parsed == null || !parsed.isJsonObject()) {
-                return false;
+                return 0;
             }
             root = parsed.getAsJsonObject();
-        } catch (Exception ignored) {
-            DontPunchMyTacz.LOGGER.warn("Could not read {}", path.getFileName());
-            return false;
+        } catch (Exception e) {
+            DontPunchMyTacz.LOGGER.warn("Failed to read {}", path.getFileName());
+            return 0;
         }
 
-        // Real Punchy settings file only. Leave tuning dumps alone.
         if (!root.has("itemBlacklist") && !root.has("enableMod")) {
-            return false;
+            return 0;
         }
         if (!merge(root)) {
-            return false;
+            return 0;
         }
 
         Path temp = path.resolveSibling(path.getFileName() + ".tmp");
         try (Writer writer = Files.newBufferedWriter(temp, StandardCharsets.UTF_8)) {
             GSON.toJson(root, writer);
             writer.write('\n');
-        } catch (Exception ignored) {
-            DontPunchMyTacz.LOGGER.warn("Could not write {}", path.getFileName());
-            deleteQuietly(temp);
-            return false;
-        }
-
-        try {
-            Files.move(temp, path, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
-        } catch (Exception ignored) {
+            Files.move(temp, path, StandardCopyOption.REPLACE_EXISTING);
+            return 1;
+        } catch (Exception e) {
+            DontPunchMyTacz.LOGGER.warn("Failed to write {}", path.getFileName());
             try {
-                Files.move(temp, path, StandardCopyOption.REPLACE_EXISTING);
-            } catch (Exception failed) {
-                DontPunchMyTacz.LOGGER.warn("Could not replace {}", path.getFileName());
-                deleteQuietly(temp);
-                return false;
+                Files.deleteIfExists(temp);
+            } catch (Exception ignored) {
             }
-        }
-        return true;
-    }
-
-    private static void deleteQuietly(Path path) {
-        try {
-            Files.deleteIfExists(path);
-        } catch (Exception ignored) {
+            return 0;
         }
     }
 
     private static boolean merge(JsonObject root) {
-        JsonArray list = jsonArray(root, "itemBlacklist");
-        JsonObject dual = jsonObject(root, "blacklistApplyDualHanded");
+        JsonArray list = root.has("itemBlacklist") && root.get("itemBlacklist").isJsonArray()
+                ? root.getAsJsonArray("itemBlacklist")
+                : new JsonArray();
+        JsonObject dual = root.has("blacklistApplyDualHanded") && root.get("blacklistApplyDualHanded").isJsonObject()
+                ? root.getAsJsonObject("blacklistApplyDualHanded")
+                : new JsonObject();
 
-        Set<String> already = new LinkedHashSet<>();
-        for (JsonElement element : list) {
-            if (element.isJsonPrimitive()) {
-                already.add(element.getAsString());
+        Set<String> have = new LinkedHashSet<>();
+        for (JsonElement el : list) {
+            if (el.isJsonPrimitive()) {
+                have.add(el.getAsString());
             }
         }
 
         boolean changed = false;
+        for (String id : REMOVE) {
+            if (have.remove(id)) {
+                changed = true;
+            }
+            if (dual.has(id)) {
+                dual.remove(id);
+                changed = true;
+            }
+        }
+
+        JsonArray next = new JsonArray();
+        for (String id : have) {
+            next.add(id);
+        }
         for (String id : IDS) {
-            if (already.add(id)) {
-                list.add(id);
+            if (have.add(id)) {
+                next.add(id);
                 changed = true;
             }
             if (!dual.has(id)) {
@@ -201,102 +199,80 @@ final class BlacklistForce {
             }
         }
 
-        root.add("itemBlacklist", list);
+        root.add("itemBlacklist", next);
         root.add("blacklistApplyDualHanded", dual);
         return changed;
     }
 
-    private static JsonArray jsonArray(JsonObject root, String key) {
-        if (root.has(key) && root.get(key).isJsonArray()) {
-            return root.getAsJsonArray(key);
-        }
-        return new JsonArray();
-    }
-
-    private static JsonObject jsonObject(JsonObject root, String key) {
-        if (root.has(key) && root.get(key).isJsonObject()) {
-            return root.getAsJsonObject(key);
-        }
-        return new JsonObject();
-    }
-
-    /**
-     * If Punchy already read the file, add the same ids to the two F8 fields.
-     * Those two names only.
-     */
-    private static int patchLoadedPunchy() {
+    private static int patchLoaded() {
         if (!ModList.get().isLoaded("punchy")) {
             return 0;
         }
-        Object mod = punchyInstance();
-        if (mod == null) {
-            return 0;
-        }
-        return fillKnownFields(mod, 0);
-    }
-
-    private static Object punchyInstance() {
-        return ModList.get().getModContainerById("punchy").map(container -> {
+        Object mod = ModList.get().getModContainerById("punchy").map(c -> {
             try {
-                return container.getClass().getMethod("getMod").invoke(container);
-            } catch (Exception ignored) {
+                return c.getClass().getMethod("getMod").invoke(c);
+            } catch (Exception e) {
                 return null;
             }
         }).orElse(null);
+        return mod == null ? 0 : scan(mod, 0);
     }
 
-    private static int fillKnownFields(Object target, int depth) {
+    private static int scan(Object target, int depth) {
         if (target == null || depth > 2) {
             return 0;
         }
 
         int hits = 0;
         for (Field field : target.getClass().getDeclaredFields()) {
-            String name = field.getName();
             Object value;
             try {
                 field.setAccessible(true);
                 value = field.get(target);
-            } catch (Exception ignored) {
+            } catch (Exception e) {
                 continue;
             }
             if (value == null) {
                 continue;
             }
 
-            if ("itemBlacklist".equals(name) && value instanceof Collection<?> collection) {
-                if (addStrings(collection)) {
+            String name = field.getName();
+            if ("itemBlacklist".equals(name) && value instanceof Collection<?> col) {
+                if (addIds(col)) {
                     hits++;
                 }
             } else if ("blacklistApplyDualHanded".equals(name) && value instanceof Map<?, ?> map) {
                 if (addFlags(map)) {
                     hits++;
                 }
-            } else if (depth == 0 && isPunchyConfigObject(value)) {
-                hits += fillKnownFields(value, depth + 1);
+            } else if (depth == 0) {
+                String type = value.getClass().getName();
+                if (type.toLowerCase().contains("punchy") && !type.startsWith("java.")) {
+                    hits += scan(value, 1);
+                }
             }
         }
         return hits;
     }
 
-    private static boolean isPunchyConfigObject(Object value) {
-        String type = value.getClass().getName();
-        return type.toLowerCase().contains("punchy") && !type.startsWith("java.");
-    }
-
     @SuppressWarnings("unchecked")
-    private static boolean addStrings(Collection<?> collection) {
+    private static boolean addIds(Collection<?> collection) {
         if (!collection.isEmpty() && !(collection.iterator().next() instanceof String)) {
             return false;
         }
-        Collection<Object> sink = (Collection<Object>) collection;
+        Collection<Object> col = (Collection<Object>) collection;
         boolean changed = false;
+        for (String id : REMOVE) {
+            if (col.remove(id)) {
+                changed = true;
+            }
+        }
         for (String id : IDS) {
-            if (!sink.contains(id)) {
+            if (!col.contains(id)) {
                 try {
-                    sink.add(id);
+                    col.add(id);
                     changed = true;
-                } catch (Exception ignored) {
+                } catch (Exception e) {
                     return changed;
                 }
             }
@@ -306,14 +282,19 @@ final class BlacklistForce {
 
     @SuppressWarnings("unchecked")
     private static boolean addFlags(Map<?, ?> map) {
-        Map<Object, Object> sink = (Map<Object, Object>) map;
+        Map<Object, Object> m = (Map<Object, Object>) map;
         boolean changed = false;
+        for (String id : REMOVE) {
+            if (m.remove(id) != null) {
+                changed = true;
+            }
+        }
         for (String id : IDS) {
-            if (!sink.containsKey(id)) {
+            if (!m.containsKey(id)) {
                 try {
-                    sink.put(id, Boolean.FALSE);
+                    m.put(id, Boolean.FALSE);
                     changed = true;
-                } catch (Exception ignored) {
+                } catch (Exception e) {
                     return changed;
                 }
             }
