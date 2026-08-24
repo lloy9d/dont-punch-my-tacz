@@ -38,9 +38,7 @@ Nice to have (it only touches these if you actually installed them):
 
 ## What it does
 
-It adds TACZ to Punchy's blacklist. Same list as F8, plus `tacz:.*` so new guns get caught too.
-
-Your other Punchy settings stay put.
+It adds those items to Punchy's F8 blacklist. Your other Punchy settings stay put
 
 ## Build
 
