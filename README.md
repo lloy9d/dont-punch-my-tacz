@@ -5,51 +5,41 @@
 # Don't Punch My TACZ
 
 <p>
+  <a href="https://modrinth.com/mod/dont-punch-my-tacz">
+    <img alt="Modrinth" src="https://img.shields.io/badge/Modrinth-Download-1bd96a?style=flat-square&logo=modrinth&logoColor=white">
+  </a>
   <img alt="NeoForge" src="https://img.shields.io/badge/NeoForge-1.21.1-e04e14?style=flat-square">
   <img alt="Minecraft" src="https://img.shields.io/badge/MC-1.21.1-62b47a?style=flat-square">
   <img alt="Client" src="https://img.shields.io/badge/Client-only-4a90d9?style=flat-square">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-6c757d?style=flat-square">
 </p>
 
-Punchy is great. Punchy holding a TACZ gun is two guns. Yeah.
+**Download on Modrinth:** [modrinth.com/mod/dont-punch-my-tacz](https://modrinth.com/mod/dont-punch-my-tacz)
 
-The Punchy guy already told us the fix: press **F8**, blacklist the guns. That works. This jar just does the click so your players don't have to.
+When you hold a TACZ gun with Punchy installed, the gun visually duplicates on your screen. It looks like you're holding two guns at once, even though you only have one
 
-Not official. Not made by Punchy or TACZ. Just a tiny helper.
+The Punchy mod already has a fix for this: press **F8** and add the gun to the blacklist. This works, but you have to do it every time. This mod does that step for you automatically
 
-## Install
+**Note:** This is not an official mod. It is not made by Punchy or TACZ. It is just a small helper mod
 
-Drop it in `mods`.
+## How to Install
 
-Everyone who plays needs it. The server does not.
+1. Put the `.jar` file in your `mods` folder
+2. Every player needs this mod. The server does **not** need it
 
-You need:
+### You need:
 
 - Minecraft **1.21.1**
 - **NeoForge**
 - **Punchy**
 
-Nice to have (it only touches these if you actually installed them):
+### Optional (only used if you have them installed):
 
-- **TACZ** > all guns
-- **Create** > potato cannon, extendo grip, worldshaper
-- **Create Simulated** (Aeronautics) > plunger launcher
-- **Power Grid** > portable saw, drill, electrozapper
+- **TACZ** → all guns
+- **Create** → potato cannon, extendo grip, worldshaper
+- **Create Simulated Aeronautics** → plunger launcher
+- **Power Grid** → portable saw, drill, electrozapper
 
-## What it does
+## What This Mod Does
 
-It adds those items to Punchy's F8 blacklist. Your other Punchy settings stay put
-
-## Build
-
-GitHub builds it when you push. Or on your machine, Java 21:
-
-```bash
-./gradlew build
-```
-
-Jar lands in `build/libs/`.
-
-## License
-
-MIT. Go wild.
+It automatically adds the items above to Punchy's F8 blacklist. It does **not** change any other Punchy settings
