@@ -1,0 +1,54 @@
+name: Build Forge 1.20.1
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version number only, like 0.2 (do not type the v)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle 8.1.1
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.1.1"
+
+      - name: Resolve version
+        shell: bash
+        run: |
+          VER="${{ inputs.version }}"
+          VER="${VER#v}"
+          if [[ -z "$VER" ]]; then
+            VER="0.2"
+          fi
+          echo "MOD_VERSION=$VER" >> "$GITHUB_ENV"
+          echo "Building version v$VER"
+
+      - name: Build
+        run: gradle build --stacktrace -Pmod_version=${{ env.MOD_VERSION }}
+
+      - name: Publish to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.MOD_VERSION }}
+          name: v${{ env.MOD_VERSION }}
+          target_commitish: main
+          files: |
+            build/libs/dont-punch-my-tacz-v*.jar
+          fail_on_unmatched_files: true
