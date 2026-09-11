@@ -16,7 +16,7 @@
 
 **Download on Modrinth:** [modrinth.com/mod/dont-punch-my-tacz](https://modrinth.com/mod/dont-punch-my-tacz)
 
-When you hold a TACZ or SuperbWarfare gun with Punchy installed, the gun visually duplicates on your screen. It looks like you're holding two guns at once, even though you only have one
+When you hold a TACZ or SuperbWarfare gun with Punchy installed, the gun visually duplicates/glitches on your screen. It looks like you're holding two guns at once, even though you only have one
 
 The Punchy mod already has a fix for this: press **F8** and add the gun to the blacklist. This works, but you have to do it every time. This mod does that step for you automatically
 
