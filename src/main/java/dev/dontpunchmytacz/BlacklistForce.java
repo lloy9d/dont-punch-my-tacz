@@ -157,7 +157,13 @@ final class BlacklistForce {
             "superbwarfare:rgo_grenade",
             "superbwarfare:m18_smoke_grenade",
             "superbwarfare:lunge_mine",
-            "superbwarfare:skin_spray"
+            "superbwarfare:skin_spray",
+            "superbwarfare:hammer",
+            "superbwarfare:golden_hammer",
+            "superbwarfare:steel_hammer",
+            "superbwarfare:diamond_hammer",
+            "superbwarfare:cemented_carbide_hammer",
+            "superbwarfare:netherite_hammer"
     );
 
     private static final List<String> IDS = Stream.of(TACZ_IDS, SUPERB_WARFARE_IDS)
