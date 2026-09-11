@@ -21,12 +21,14 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
 
 final class BlacklistForce {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     private static final List<String> REMOVE = List.of(
             "tacz:.*",
+            "superbwarfare:.*",
             "tacz:ammo",
             "tacz:attachment",
             "tacz:ammo_box",
@@ -39,7 +41,7 @@ final class BlacklistForce {
             "tacz:statue"
     );
 
-    private static final List<String> IDS = List.of(
+    private static final List<String> TACZ_IDS = List.of(
             "tacz:modern_kinetic_gun",
             "powergrid:portable_saw",
             "powergrid:portable_drill",
@@ -103,6 +105,64 @@ final class BlacklistForce {
             "tacz:uzi",
             "tacz:vector45"
     );
+
+    private static final List<String> SUPERB_WARFARE_IDS = List.of(
+            "superbwarfare:glock_17",
+            "superbwarfare:glock_18",
+            "superbwarfare:mp_443",
+            "superbwarfare:m_1911",
+            "superbwarfare:trachelium",
+            "superbwarfare:mp_5",
+            "superbwarfare:vector",
+            "superbwarfare:ak_47",
+            "superbwarfare:ak_12",
+            "superbwarfare:sks",
+            "superbwarfare:m_4",
+            "superbwarfare:hk_416",
+            "superbwarfare:qbz_95",
+            "superbwarfare:qbz_191",
+            "superbwarfare:insidious",
+            "superbwarfare:mk_14",
+            "superbwarfare:ql_1031",
+            "superbwarfare:marlin",
+            "superbwarfare:k_98",
+            "superbwarfare:mosin_nagant",
+            "superbwarfare:svd",
+            "superbwarfare:awm",
+            "superbwarfare:m_98b",
+            "superbwarfare:sentinel",
+            "superbwarfare:hunting_rifle",
+            "superbwarfare:ntw_20",
+            "superbwarfare:homemade_shotgun",
+            "superbwarfare:m_870",
+            "superbwarfare:aa_12",
+            "superbwarfare:devotion",
+            "superbwarfare:rpk",
+            "superbwarfare:m_60",
+            "superbwarfare:m_2_hb",
+            "superbwarfare:minigun",
+            "superbwarfare:m_79",
+            "superbwarfare:secondary_cataclysm",
+            "superbwarfare:rpg",
+            "superbwarfare:javelin",
+            "superbwarfare:igla_9k38",
+            "superbwarfare:bocek",
+            "superbwarfare:super_star_shooter",
+            "superbwarfare:nail_gun",
+            "superbwarfare:repair_tool",
+            "superbwarfare:taser",
+            "superbwarfare:reforging",
+            "superbwarfare:beast_gun_test",
+            "superbwarfare:hand_grenade",
+            "superbwarfare:rgo_grenade",
+            "superbwarfare:m18_smoke_grenade",
+            "superbwarfare:lunge_mine",
+            "superbwarfare:skin_spray"
+    );
+
+    private static final List<String> IDS = Stream.of(TACZ_IDS, SUPERB_WARFARE_IDS)
+            .flatMap(Collection::stream)
+            .toList();
 
     private static final String CONFIG = "punchy/punchy_config.json";
 
