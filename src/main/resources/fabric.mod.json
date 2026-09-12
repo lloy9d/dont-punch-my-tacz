@@ -12,7 +12,7 @@
     "sources": "https://github.com/lloy9d/dont-punch-my-tacz"
   },
   "license": "MIT",
-  "icon": "assets/dontpunchmytacz/icon.png",
+  "icon": "icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [

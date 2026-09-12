@@ -178,6 +178,52 @@ final class BlacklistForce {
 
     private static final String CONFIG = "punchy/punchy_config.json";
 
+    private static final String DEFAULT_CONFIG = """
+            {
+              "renderArmorArmsFP": true,
+              "interactiveStuffCompat": false,
+              "bettercombatCompat": false,
+              "swordBlockingCompat": false,
+              "animationSpeed": 5.5,
+              "enableMod": true,
+              "enableTuning": false,
+              "disableResourcePackModelParts": false,
+              "disableArmPhysics": false,
+              "disableNativeItemPhysics": false,
+              "disableBoatMinecartRaftModels": false,
+              "disablePistonModels": false,
+              "disableChestModels": false,
+              "disableEnchantingTableModels": false,
+              "disableBoatFirstPersonAnimations": false,
+              "disableEnhancedFireArmEffects": false,
+              "enableCrawlAnimation": true,
+              "enableClimbAnimation": true,
+              "enableSwimAnimation": true,
+              "enableElytraFlightAnimation": true,
+              "disableNewKeyframeMoves": true,
+              "enableCustomWalk": true,
+              "enableSprintArmSwing": true,
+              "enableFallArmAnimation": true,
+              "sprintArmSwingIntensity": 1.0,
+              "sprintArmSwingSpeed": 0.0,
+              "enableFreezeShake": true,
+              "enableFreezeArmOverlay": true,
+              "enableMud": true,
+              "enableSweat": true,
+              "enableBurn": true,
+              "enableParticles": true,
+              "enableModelPartsGlow": true,
+              "enableBlurGlowAtDark": false,
+              "firstPersonModelHideEnabled": true,
+              "firstPersonModelHidePitch": 60.0,
+              "itemBlacklist": [],
+              "blacklistApplyDualHanded": {},
+              "animationPackSelections": {},
+              "animationPackTypeSelections": {},
+              "mixSpecificForceOverride": {}
+            }
+            """;
+
     private BlacklistForce() {
     }
 
@@ -207,7 +253,7 @@ final class BlacklistForce {
                 return 0;
             }
         } else {
-            root = new JsonObject();
+            root = JsonParser.parseString(DEFAULT_CONFIG).getAsJsonObject();
         }
 
         if (!merge(root)) {
