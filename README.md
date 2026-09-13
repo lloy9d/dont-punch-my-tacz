@@ -12,7 +12,7 @@
   <img alt="Forge 1.20.1" src="https://img.shields.io/badge/Forge-1.20.1-91400e?style=flat-square&logo=data%3Aimage/svg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjE2My4wNyAzNzQuMzYgODMuNTYgNDguNDgiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Im0yNDMuNjMgMzc5LjA5LTM3Ljg0Mi0xLjg1MiA0Ni4yMjktLjAzNHYtMy43MjdoLTUyLjEyNWwtLjAwMSA3Ljc5OHY2LjIwMWMwIC4xMTUtMS41Mi05LjE0NC0xLjg3LTExLjczNGgtNC4wOTh2MTMuMDI5YzAgLjEyMy0xLjc1My0xMC44ODgtMS45MzktMTIuMjY0SDE2NC4wN2MxLjkwMiAxLjY0OCAxMi40MDEgMTAuNTk4IDE5Ljg2NSAxNC4yOCAzLjc0MSAxLjg0NiA4LjMzIDEuODYgMTIuNDE0IDEuOTc0IDIuMDc1LjA2IDQuMjUuMjE3IDUuODAzIDEuNzU0IDIuMjU1IDIuMjM2IDIuNzU4IDUuNzA0LjgxNCA4LjMzLTEuOTIyIDIuNTk0LTcuMzM1IDMuMTU2LTcuMzM1IDMuMTU2bC00LjUwOSA1LjUzMXY2LjQyNGgxMC4yNTFsLjMxOS02LjM0OCA4Ljg2My02LjI4NWMtLjk0Ni43NTctMy4wNTggMi43ODMtNi4yMjkgNy42NjYtLjcxNyAxLjEwMi0xLjI3NSAyLjMwNi0xLjcxMSAzLjQ5IDIuMjM4LTEuODk2IDYuODQtMy4xOTQgMTIuMTUzLTMuMTk0IDUuMzA3IDAgOS45MDMgMS4yOTUgMTIuMTQ2IDMuMTg4LS40MzctMS4xODUtLjk5NC0yLjM4NS0xLjcwOS0zLjQ4My0zLjE3Mi00Ljg4My01LjI4NC02LjkwOS02LjIyOS03LjY2Nmw4Ljg2MyA2LjI4NS4zMiA2LjM0OGg5LjU2NXYtNi40MjRsLTQuNTA3LTUuNTMxcy02LjY3NS0uNDI1LTguNDIzLTMuMTU2Yy01LjAzMi03Ljg2OSAyLjExNS0yMC4wODIgMTguODM2LTIzLjc1NnoiLz48L3N2Zz4%3D">
   <img alt="Fabric 1.20.1" src="https://img.shields.io/badge/Fabric-1.20.1-8f8264?style=flat-square&logo=data%3Aimage/svg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBmaWxsPSIjMzgzNDJhIiBkPSJNOSAxaDF2MWgxdjFoMXYxaDF2MWgxdjFoMXYyaC0xdjFoLTJ2MWgtMXYxaC0xdjFIOXYySDh2MUg2di0xSDV2LTFINHYtMUgzdi0xSDJWOWgxVjhoMVY3aDFWNmgxVjVoMVY0aDFWMmgxeiIvPjxwYXRoIGZpbGw9IiNkYmQwYjQiIGQ9Ik00IDlWOGgxVjdoMVY2aDFsMS0xVjRoMVYyaDF2MWgxdjFoMXYxaDF2MWwtMSAxLTIgMy0zIDMtMy0zeiIvPjxwYXRoIGZpbGw9IiNiY2IyOWMiIGQ9Ik05IDNoMXYxaDF2MWgxdjFoMXYxaC0xTDkgNHpNMTAgMTBoMVY5aDFWN2gtMXYxaC0xekg4djJoMXYtMWgxek04IDEySDd2MWgxeiIvPjxwYXRoIGZpbGw9IiNjNmJjYTUiIGQ9Ik03IDVoMXYyaDN2MUg5VjZIN3pNNiA4aDF2MmgyVjlINnoiLz48cGF0aCBmaWxsPSIjYWVhNjk0IiBkPSJNMyA5djFsMyAzaDF2LTFINnYtMUg1di0xSDRWOXoiLz48cGF0aCBmaWxsPSIjOWE5MjdlIiBkPSJNMyAxMHYxaDJ2MmgydjFINnYtMkg0di0yeiIvPjxwYXRoIGZpbGw9IiM4MDdhNmQiIGQ9Ik0xMyA3aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjMzgzNDJhIiBkPSJNOSA0djFoMnYyaDFWNmgtMlY0eiIvPjwvc3ZnPg%3D%3D">
   <img alt="Client" src="https://img.shields.io/badge/Client-only-4a90d9?style=flat-square">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-6c757d?style=flat-square">
+  <img alt="License" src="https://img.shields.io/badge/license-GPL%20v3.0-6c757d?style=flat-square">
 </p>
 
 ![Title Photo](https://i.imgur.com/3ayCSpf.png)
@@ -37,8 +37,8 @@ Punchy already has a fix: press **F8** and blacklist the item manually. This mod
 
 | File | Mod Loader | Minecraft |
 |---|---|---|
-| `dont-punch-my-tacz-vX.Y-1.21.1.jar` | **NeoForge** | 1.21.1 |
-| `dont-punch-my-tacz-vX.Y-1.20.1.jar` | **Forge** | 1.20.1 |
+| `dont-punch-my-tacz-vX.Y-1.21.1-neo.jar` | **NeoForge** | 1.21.1 |
+| `dont-punch-my-tacz-vX.Y-1.20.1-forge.jar` | **Forge** | 1.20.1 |
 | `dont-punch-my-tacz-vX.Y-1.20.1-fabric.jar` | **Fabric** | 1.20.1 |
 
 The `-fabric` suffix is how you tell the Fabric 1.20.1 file apart from the Forge 1.20.1 file.
