@@ -15,7 +15,17 @@
   <img alt="License" src="https://img.shields.io/badge/license-MIT-6c757d?style=flat-square">
 </p>
 
-**Download on Modrinth:** [modrinth.com/mod/dont-punch-my-tacz](https://modrinth.com/mod/dont-punch-my-tacz)
+![Title Photo](https://i.imgur.com/3ayCSpf.png)
+![Divider](https://i.imgur.com/jZOMuHG.png)
+<p align="center">
+  <a href="https://modrinth.com/mod/dont-punch-my-tacz">
+    <img alt="Modrinth" src="https://i.imgur.com/TK2RwfB.png">
+  <a href="https://www.curseforge.com/minecraft/mc-mods/dont-punch-my-tacz">
+    <img alt="CurseForge" src="https://i.imgur.com/ORkc3F0.png">
+  </a>
+</p>
+    
+![About](https://i.imgur.com/8j1qRST.png)
 
 When you hold a TACZ or SuperbWarfare gun with Punchy installed, the gun glitches visually in first person. It's a rendering quirk, and this mod fixes it automatically
 
@@ -40,6 +50,8 @@ On Modrinth, pick the file that matches your mod loader. On GitHub, all files ar
 1. Pick the file for your mod loader and Minecraft version (see the table above)
 2. Put it in your `mods` folder
 3. Every player needs this mod. The server does **not** need it
+
+![Compatibility Photo](https://i.imgur.com/gTAKX5s.png)
 
 ### NeoForge 1.21.1
 
@@ -67,3 +79,5 @@ On Modrinth, pick the file that matches your mod loader. On GitHub, all files ar
 ## What This Mod Does
 
 It automatically adds the items above to Punchy's F8 blacklist. It does **not** change any other Punchy settings
+
+![Divider](https://i.imgur.com/jZOMuHG.png)
