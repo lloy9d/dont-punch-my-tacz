@@ -11,7 +11,7 @@
     "homepage": "https://modrinth.com/mod/dont-punch-my-tacz",
     "sources": "https://github.com/lloy9d/dont-punch-my-tacz"
   },
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "icon": "icon.png",
   "environment": "client",
   "entrypoints": {

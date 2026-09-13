@@ -35,6 +35,7 @@ final class BlacklistForce {
     private static final List<String> REMOVE = List.of(
             "tacz:.*",
             "superbwarfare:.*",
+            "lrtactical:.*",
             "tacz:ammo",
             "tacz:attachment",
             "tacz:ammo_box",
@@ -171,8 +172,21 @@ final class BlacklistForce {
             "superbwarfare:cemented_carbide_hammer",
             "superbwarfare:netherite_hammer"
     );
+    
+    private static final List<String> LES_RAISINS_IDS = List.of(
+            "lrtactical:melee",
+            "lrtactical:throwable",
+            "lrtactical:consumable",
+            "lrtactical:flash_shield"
+    );
 
-    private static final List<String> IDS = Stream.of(TACZ_IDS, SUPERB_WARFARE_IDS)
+    private static final List<String> MISC_IDS = List.of(
+            "createdieselgenerators:chemical_sprayer",
+            "createdieselgenerators:chemical_sprayer_lighter",
+            "exposure:camera"
+    );
+    
+    private static final List<String> IDS = Stream.of(TACZ_IDS, SUPERB_WARFARE_IDS, LES_RAISINS_IDS, MISC_IDS)
             .flatMap(Collection::stream)
             .toList();
 
