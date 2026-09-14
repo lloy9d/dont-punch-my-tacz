@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "dontpunchmytacz",
+  "version": "${version}",
+  "name": "Don't Punch My TACZ",
+  "description": "Fixes a first-person visual bug where guns glitch in hand. Automatically adds TACZ, LRTactical and Create items to Punchy's first-person blacklist. Same as pressing F8, but automatic.",
+  "authors": [
+    "Don't Punch My TACZ"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/dont-punch-my-tacz",
+    "sources": "https://github.com/lloy9d/dont-punch-my-tacz"
+  },
+  "license": "GPL-3.0-only",
+  "icon": "icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.dontpunchmytacz.DontPunchMyTacz"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.2",
+    "java": ">=25"
+  },
+  "recommends": {
+    "punchy": "*"
+  },
+  "suggests": {
+    "tacz": "*",
+    "lrtactical": "*",
+    "create": "*"
+  }
+}
