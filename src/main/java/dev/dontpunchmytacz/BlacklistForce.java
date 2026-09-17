@@ -172,7 +172,7 @@ final class BlacklistForce {
             "superbwarfare:cemented_carbide_hammer",
             "superbwarfare:netherite_hammer"
     );
-    
+
     private static final List<String> LES_RAISINS_IDS = List.of(
             "lrtactical:melee",
             "lrtactical:throwable",
@@ -180,13 +180,30 @@ final class BlacklistForce {
             "lrtactical:flash_shield"
     );
 
+    private static final List<String> CREATE_GUNSMITHING_IDS = List.of(
+            "cgs:flintlock",
+            "cgs:revolver",
+            "cgs:shotgun",
+            "cgs:nailgun",
+            "cgs:gatling",
+            "cgs:blazegun",
+            "cgs:launcher",
+            "cgs:hammer",
+            "cgs:frag_grenade"
+    );
+
     private static final List<String> MISC_IDS = List.of(
             "createdieselgenerators:chemical_sprayer",
             "createdieselgenerators:chemical_sprayer_lighter",
             "exposure:camera"
     );
-    
-    private static final List<String> IDS = Stream.of(TACZ_IDS, SUPERB_WARFARE_IDS, LES_RAISINS_IDS, MISC_IDS)
+
+    private static final List<String> VANILLA_IDS = List.of(
+            "minecraft:brush"
+    );
+
+    private static final List<String> IDS = Stream.of(TACZ_IDS, SUPERB_WARFARE_IDS, LES_RAISINS_IDS,
+                    CREATE_GUNSMITHING_IDS, MISC_IDS, VANILLA_IDS)
             .flatMap(Collection::stream)
             .toList();
 
