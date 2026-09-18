@@ -57,6 +57,20 @@ tasks.named('jar', Jar).configure {
         attributes([
                 'Implementation-Title'  : project.base.archivesName.get(),
                 'Implementation-Version': project.version,
+                'MixinConfigs'          : 'dontpunchmytacz.mixins.json'
         ])
+    }
+}
+
+dependencies {
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    // Punchy is optional - use local jar for compilation
+    compileOnly files("jars/punchy-2.8a-neoforge-1.21.1.jar")
+}
+
+repositories {
+    maven {
+        name = 'SpongePowered'
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
     }
 }

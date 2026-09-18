@@ -10,7 +10,7 @@ displayName="${mod_name}"
 authors="Don't Punch My TACZ"
 logoFile="icon.png"
 description='''
-Punchy keeps drawing a second gun. This tells Punchy to leave TACZ and SuperbWarfare guns (plus a few Create / Power Grid / Simulated toys) alone. Same trick as pressing F8
+Fixes a first-person visual bug where guns glitch in hand. Automatically adds TACZ, LRTactical, Create and Create: Gunsmithing items to Punchy's first-person blacklist. Same as pressing F8, but automatic. Also hides Punchy's first-person hand while carrying an object with Carry On.
 '''
 
 [[dependencies.${mod_id}]]
@@ -43,6 +43,20 @@ Punchy keeps drawing a second gun. This tells Punchy to leave TACZ and SuperbWar
 
 [[dependencies.${mod_id}]]
     modId="superbwarfare"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.${mod_id}]]
+    modId="carryon"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.${mod_id}]]
+    modId="cgs"
     type="optional"
     versionRange="[0,)"
     ordering="NONE"
