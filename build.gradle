@@ -3,6 +3,19 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
+}
+
+repositories {
+    maven {
+        name = 'SpongePowered'
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
+    }
+}
+
+mixin {
+    add sourceSets.main, "dontpunchmytacz.refmap.json"
+    config "dontpunchmytacz.mixins.json"
 }
 
 version = "v${mod_version}-${minecraft_version}-forge"
@@ -46,6 +59,8 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    compileOnly fg.deobf(files("jars/punchy-2.8a-forge-1.20.1.jar"))
 }
 
 tasks.named('processResources', ProcessResources).configure {
