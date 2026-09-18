@@ -1,4 +1,4 @@
-name: Build NeoForge 1.21.1
+name: Build
 
 on:
   workflow_dispatch:
