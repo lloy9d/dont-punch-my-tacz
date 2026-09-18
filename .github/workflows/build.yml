@@ -1,5 +1,4 @@
 name: Build Forge 1.20.1
-
 on:
   workflow_dispatch:
     inputs:
@@ -7,28 +6,23 @@ on:
         description: "Version number only, like 0.5 (do not type the v)"
         required: false
         default: ""
-
 permissions:
   contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-
       - name: Set up Java 17
         uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: "17"
-
       - name: Set up Gradle 8.1.1
         uses: gradle/actions/setup-gradle@v6
         with:
           gradle-version: "8.1.1"
-
       - name: Resolve version
         shell: bash
         run: |
@@ -39,17 +33,20 @@ jobs:
           fi
           echo "MOD_VERSION=$VER" >> "$GITHUB_ENV"
           echo "Building version v$VER"
-
+      - name: Fetch Punchy jar (build-time only, not redistributed)
+        run: |
+          mkdir -p jars
+          test -f jars/punchy-2.8a-forge-1.20.1.jar || curl -fsSL -o jars/punchy-2.8a-forge-1.20.1.jar \
+            https://cdn.modrinth.com/data/8aoMKplv/versions/YHJIckmW/punchy-2.8a-forge-1.20.1.jar
+          echo "2729ef064311c2151896b0b34e44b644947f6e37  jars/punchy-2.8a-forge-1.20.1.jar" | sha1sum -c -
       - name: Build
         run: gradle build --stacktrace -Pmod_version=${{ env.MOD_VERSION }}
-
       - name: Upload jar
         uses: actions/upload-artifact@v7
         with:
           name: dont-punch-my-tacz-v${{ env.MOD_VERSION }}-1.20.1-forge
           path: build/libs/*.jar
           if-no-files-found: error
-
       - name: Publish to release
         if: github.event_name == 'workflow_dispatch'
         uses: softprops/action-gh-release@v3
