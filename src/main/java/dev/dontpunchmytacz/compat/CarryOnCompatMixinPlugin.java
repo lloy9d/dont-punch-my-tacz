@@ -17,6 +17,9 @@ public final class CarryOnCompatMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         FabricLoader loader = FabricLoader.getInstance();
+        if (mixinClassName.endsWith("PunchyArmTrimMixin")) {
+            return loader.isModLoaded("punchy");
+        }
         return loader.isModLoaded("punchy") && loader.isModLoaded("carryon");
     }
 
