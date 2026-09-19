@@ -6,7 +6,9 @@
   "plugin": "dev.dontpunchmytacz.compat.CarryOnCompatMixinPlugin",
   "client": [
     "HandEquipStateMachineMixin",
-    "PunchyArmTrimMixin"
+    "PunchyArmTrimMixin",
+    "PunchyInvisibleArmsMixin",
+    "PunchyCrossbowMixin"
   ],
   "injectors": {
     "defaultRequire": 0

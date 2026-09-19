@@ -11,6 +11,7 @@ on:
         description: "Minecraft version to compile against (the jar name stays 26.x)"
         required: false
         default: "26.2"
+
 permissions:
   contents: write
 
@@ -48,6 +49,18 @@ jobs:
           echo "MC_VERSION=$MC" >> "$GITHUB_ENV"
           echo "JAR=dont-punch-my-tacz-v${VER}-26.x-fabric.jar" >> "$GITHUB_ENV"
           echo "Building version v$VER against Minecraft $MC"
+
+      - name: Fetch Punchy jar (build-time only, not redistributed)
+        shell: bash
+        run: |
+          mkdir -p jars
+          case "$MC_VERSION" in
+            26.1*) ID="bq92Ivky"; FILE="punchy-2.8a-fabric-26.1-26.1.1-26.1.2.jar"; SHA="a5075a12828572ffc9af778e294f597c9a8806c3" ;;
+            26.2)  ID="QShDZDjS"; FILE="punchy-2.8a-fabric-26.2.jar";                SHA="a9a41bc71c5b7394ad81d93fc0fe3f474c5c24e9" ;;
+            *)     ID="pvQrTRV9"; FILE="punchy-2.8a-fabric-26.3.jar";                SHA="bf3a26ef63bd785bfb36f0a46194cb94ba6471d1" ;;
+          esac
+          curl -fsSL -o "jars/$FILE" "https://cdn.modrinth.com/data/8aoMKplv/versions/${ID}/${FILE}"
+          echo "${SHA}  jars/$FILE" | sha1sum -c -
 
       - name: Build
         run: gradle build --stacktrace -Pmod_version=${{ env.MOD_VERSION }} -Pminecraft_version=${{ env.MC_VERSION }}
