@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "dontpunchmytacz",
+  "version": "${version}",
+  "name": "Don't Punch My TACZ",
+  "description": "Punchy compats and fixes for TACZ, SuperbWarfare, Create and more :)",
+  "authors": [
+    "Don't Punch My TACZ"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/dont-punch-my-tacz",
+    "sources": "https://github.com/lloy9d/dont-punch-my-tacz"
+  },
+  "license": "GPL-3.0-only",
+  "icon": "icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.dontpunchmytacz.DontPunchMyTacz"
+    ]
+  },
+  "mixins": [
+    "dontpunchmytacz.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": [
+      "1.21.1",
+      "1.21.11"
+    ],
+    "java": ">=21"
+  },
+  "recommends": {
+    "punchy": "*"
+  },
+  "suggests": {
+    "tacz": "*",
+    "superbwarfare": "*",
+    "carryon": "*"
+  }
+}

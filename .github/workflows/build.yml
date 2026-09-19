@@ -1,0 +1,60 @@
+name: Build Fabric 1.21.x
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version number only, like 0.6 (do not type the v). Leave empty to use mod_version from gradle.properties"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - name: Set up Gradle 9.5.1
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.5.1"
+
+      - name: Resolve version
+        shell: bash
+        run: |
+          VER="${{ inputs.version }}"
+          VER="${VER#v}"
+          if [[ -z "$VER" ]]; then
+            VER="$(grep -E '^mod_version=' gradle.properties | cut -d= -f2)"
+          fi
+          echo "MOD_VERSION=$VER" >> "$GITHUB_ENV"
+          echo "Building version v$VER"
+
+      - name: Fetch Punchy jar (build-time only, not redistributed)
+        run: |
+          mkdir -p jars
+          curl -fsSL -o jars/punchy-2.8a-fabric-1.21.1.jar \
+            "https://cdn.modrinth.com/data/8aoMKplv/versions/PME7GrWI/punchy-2.8a-fabric-1.21.1.jar"
+          echo "a0a3e83e1663d0fc0a91272150c7d4a7c6d3466a  jars/punchy-2.8a-fabric-1.21.1.jar" | sha1sum -c -
+
+      - name: Build
+        run: gradle build --stacktrace -Pmod_version=${{ env.MOD_VERSION }}
+
+      - name: Publish to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.MOD_VERSION }}
+          name: v${{ env.MOD_VERSION }}
+          files: |
+            build/libs/dont-punch-my-tacz-v${{ env.MOD_VERSION }}-1.21.x-fabric.jar
+          fail_on_unmatched_files: true
