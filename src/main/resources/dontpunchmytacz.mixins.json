@@ -1,0 +1,16 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "dev.dontpunchmytacz.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "dev.dontpunchmytacz.compat.CarryOnCompatMixinPlugin",
+  "client": [
+    "HandEquipStateMachineMixin",
+    "PunchyInvisibleArmsMixin",
+    "PunchyCrossbowMixin",
+    "PunchyArmorSleeveMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

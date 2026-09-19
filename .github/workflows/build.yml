@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Version number only, like 0.3 (do not type the v)"
+        description: "Version number only, like 0.6 (do not type the v). Leave empty to use mod_version from gradle.properties"
         required: false
         default: ""
 
@@ -35,10 +35,17 @@ jobs:
           VER="${{ inputs.version }}"
           VER="${VER#v}"
           if [[ -z "$VER" ]]; then
-            VER="0.3"
+            VER="$(grep -E '^mod_version=' gradle.properties | cut -d= -f2)"
           fi
           echo "MOD_VERSION=$VER" >> "$GITHUB_ENV"
           echo "Building version v$VER"
+
+      - name: Fetch Punchy jar (build-time only, not redistributed)
+        run: |
+          mkdir -p jars
+          curl -fsSL -o jars/punchy-2.8a-fabric-1.20.1.jar \
+            "https://cdn.modrinth.com/data/8aoMKplv/versions/veR3zUE1/punchy-2.8a-fabric-1.20.1.jar"
+          echo "fddd8d6b5a039343d15671f3176d3051a74e64bf  jars/punchy-2.8a-fabric-1.20.1.jar" | sha1sum -c -
 
       - name: Build
         run: gradle build --stacktrace -Pmod_version=${{ env.MOD_VERSION }}

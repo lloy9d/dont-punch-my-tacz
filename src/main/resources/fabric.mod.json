@@ -3,7 +3,7 @@
   "id": "dontpunchmytacz",
   "version": "${version}",
   "name": "Don't Punch My TACZ",
-  "description": "Fixes a first-person visual bug where guns glitch in hand. Automatically adds TACZ, SuperbWarfare, Create and Power Grid items to Punchy's first-person blacklist. Same as pressing F8, but automatic.",
+  "description": "Punchy compats and fixes for TACZ, SuperbWarfare, Create and more :)",
   "authors": [
     "Don't Punch My TACZ"
   ],
@@ -19,6 +19,9 @@
       "dev.dontpunchmytacz.DontPunchMyTacz"
     ]
   },
+  "mixins": [
+    "dontpunchmytacz.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.16.5",
     "minecraft": "1.20.1",
@@ -29,6 +32,7 @@
   },
   "suggests": {
     "tacz": "*",
-    "superbwarfare": "*"
+    "superbwarfare": "*",
+    "carryon": "*"
   }
 }
