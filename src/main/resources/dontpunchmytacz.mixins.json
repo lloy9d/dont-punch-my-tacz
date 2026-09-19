@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_21",
   "plugin": "dev.dontpunchmytacz.compat.CarryOnCompatMixinPlugin",
   "client": [
-    "HandEquipStateMachineMixin"
+    "HandEquipStateMachineMixin",
+    "PunchyInvisibleArmsMixin",
+    "PunchyCrossbowMixin"
   ],
   "injectors": {
     "defaultRequire": 0

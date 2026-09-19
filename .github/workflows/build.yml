@@ -27,7 +27,7 @@ jobs:
           VER="${{ inputs.version }}"
           VER="${VER#v}"
           if [[ -z "$VER" ]]; then
-            VER="0.5"
+            VER="0.5.1"
           fi
           echo "MOD_VERSION=$VER" >> "$GITHUB_ENV"
           echo "Building version v$VER"

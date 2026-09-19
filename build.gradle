@@ -64,7 +64,6 @@ tasks.named('jar', Jar).configure {
 
 dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    // Punchy is optional - use local jar for compilation
     compileOnly files("jars/punchy-2.8a-neoforge-1.21.1.jar")
 }
 
