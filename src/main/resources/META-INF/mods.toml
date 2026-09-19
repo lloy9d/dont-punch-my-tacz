@@ -9,7 +9,7 @@ version="${mod_version}"
 displayName="${mod_name}"
 authors="Don't Punch My TACZ"
 logoFile="icon.png"
-description='''Fixes a first-person visual bug where guns glitch in hand. Automatically adds TACZ, LRTactical, Create and Create: Gunsmithing items to Punchy's first-person blacklist. Same as pressing F8, but automatic. Also hides Punchy's first-person hand while carrying an object with Carry On.'''
+description='''Punchy compats and fixes for TACZ, SuperbWarfare, Create and more.'''
 
 [[dependencies.${mod_id}]]
     modId="forge"

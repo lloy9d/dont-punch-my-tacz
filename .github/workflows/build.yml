@@ -29,14 +29,14 @@ jobs:
           VER="${{ inputs.version }}"
           VER="${VER#v}"
           if [[ -z "$VER" ]]; then
-            VER="0.5"
+            VER="0.5.1"
           fi
           echo "MOD_VERSION=$VER" >> "$GITHUB_ENV"
           echo "Building version v$VER"
       - name: Fetch Punchy jar (build-time only, not redistributed)
         run: |
           mkdir -p jars
-          test -f jars/punchy-2.8a-forge-1.20.1.jar || curl -fsSL -o jars/punchy-2.8a-forge-1.20.1.jar \
+          curl -fsSL -o jars/punchy-2.8a-forge-1.20.1.jar \
             https://cdn.modrinth.com/data/8aoMKplv/versions/YHJIckmW/punchy-2.8a-forge-1.20.1.jar
           echo "2729ef064311c2151896b0b34e44b644947f6e37  jars/punchy-2.8a-forge-1.20.1.jar" | sha1sum -c -
       - name: Build

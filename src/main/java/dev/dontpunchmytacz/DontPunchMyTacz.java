@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 @Mod(DontPunchMyTacz.MOD_ID)
 public final class DontPunchMyTacz {
     public static final String MOD_ID = "dontpunchmytacz";
-    static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public DontPunchMyTacz(FMLJavaModLoadingContext context) {
         BlacklistForce.apply();

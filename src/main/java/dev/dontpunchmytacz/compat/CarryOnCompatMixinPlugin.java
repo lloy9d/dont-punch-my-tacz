@@ -17,13 +17,17 @@ public final class CarryOnCompatMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         try {
-            var mods = LoadingModList.get();
+            LoadingModList mods = LoadingModList.get();
             if (mods == null) {
                 return true;
             }
-            boolean hasPunchy = mods.getModFileById("punchy") != null;
-            boolean hasCarryOn = mods.getModFileById("carryon") != null;
-            return hasPunchy && hasCarryOn;
+            if (mods.getModFileById("punchy") == null) {
+                return false;                         
+            }
+            if (mixinClassName.endsWith("HandEquipStateMachineMixin")) {
+                return mods.getModFileById("carryon") != null;    
+            }
+            return true;                             
         } catch (Throwable t) {
             return true;
         }
