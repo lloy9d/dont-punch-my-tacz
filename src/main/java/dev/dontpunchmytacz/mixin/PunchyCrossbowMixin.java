@@ -21,7 +21,7 @@ public class PunchyCrossbowMixin {
 
     private static boolean dontpunchmytacz$loggedCurrentCharge;
 
-    @Inject(method = "clipSpeedMultiplier", at = @At("RETURN"), cancellable = true, require = 1, remap = false)
+    @Inject(method = "clipSpeedMultiplier", at = @At("RETURN"), cancellable = true, require = 0, remap = false)
     private static void dontpunchmytacz$speedUpQuickCharge(AnimationClip clip, CallbackInfoReturnable<Float> cir) {
         try {
             String name = clip == null ? null : clip.getName();

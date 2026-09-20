@@ -7,7 +7,9 @@
   "client": [
     "HandEquipStateMachineMixin",
     "PunchyInvisibleArmsMixin",
-    "PunchyCrossbowMixin"
+    "PunchyCrossbowMixin",
+    "PunchyItemPropertiesMixin",
+    "PunchyHeldStackMixin"
   ],
   "injectors": {
     "defaultRequire": 0
