@@ -8,7 +8,8 @@
     "HandEquipStateMachineMixin",
     "PunchyInvisibleArmsMixin",
     "PunchyCrossbowMixin",
-    "PunchyArmorSleeveMixin"
+    "PunchyArmorSleeveMixin",
+    "PunchyHeldStackMixin"
   ],
   "injectors": {
     "defaultRequire": 0
